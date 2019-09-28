@@ -1,19 +1,26 @@
 # Orange PI + 3D Printing over WiFi
 
-I recently bought an Ender Pro 3 to learn more about 3D printing and eventually make all the plastic cases for my HomeBots.
+I recently bought an [Ender Pro 3](https://www.aliexpress.com/item/32918302452.html?spm=a2g0s.9042311.0.0.5cb64c4dK88xrA) to learn more about 3D printing and eventually make all the plastic cases for my [HomeBots](https://github.com/homebots).
 
 The first thing that bothered me is either swap around a TF Card or hook an USB cable for serial communication.
 
 And you know that connecting and disconnecting a USB is too much work for a nerd, so why not hook my OrangePI to the side
 of the printer and make it print over WIFI?
 
+# What you're gonna need/use
+
+- [Orange Pi](http://www.orangepi.org/orangepizero/) with [Armbian](https://www.armbian.com/orange-pi-pc/) installed on an SD Card
+- USB Cable for your printer
+- SSH with root access to your OPi
+- Octoprint software from GitHub
+
 Luckily for me, I already have **Armbian** running on OPi and I found [a quick tutorial on the webz](http://deloarts.com/en/3d-printing/octoprint-on-orange-pi-zero/) to do it.
 We're gonna setup some packages, install PySerial and build [OctoPrint](https://octoprint.org/download/) to start our prints.
 
 At the moment the stable version of OctoPrint is 1.3.11. Check the latest stable version [here](https://github.com/foosel/OctoPrint/releases)
 
-**If you are like me and cannot read through a whole article here's a quick sequence of commands to do everything:**
 
+**If you are like me and cannot read through a whole article here's a quick sequence of commands to do everything:**
 
 _NOTE: I assume you are logged in as root here. If not, run "sudo sh" first_
 
@@ -59,8 +66,31 @@ The server will be available at your machine's IP + ':5000', like so: `192.168.1
 You can change the server port (and other configs) in `/etc/default/octoprint`. 
 After saving your changes, run `update-rc.d octoprint defaults && service octoprint restart`
 
-NOTE: after changing the port sometimes Octoprint will get stuck. I just pulled the plug of OrangePI and put it back. 
+## Notes
+
+- After changing the port sometimes Octoprint will get stuck. I just pulled the plug of OrangePI and put it back. 
 After reboot it was back online :)
+
+- If you have an Ender 3 Pro like me, here's the Octoprint profile for it:
+```
+Print bed & build volume:
+  Form factor: Rectangular
+  Origin: Lower Left
+  Heated Bed: Yes
+  Heated Chambere: No
+  
+  Width: 220mm
+  Depth: 220mm
+  Height: 250mm
+  Custom Bounding Box: No
+  
+Axes -  use default values:
+  6000, 6000, 200, 300
+
+Hotend & extruder
+  Nozzle Diameter: 0.4mm
+  Number of Extruders: 1
+```
 
 Easy peasy, 3d-print squeezy!
 
