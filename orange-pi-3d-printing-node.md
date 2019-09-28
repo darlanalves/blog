@@ -25,7 +25,7 @@ apt-get install -y \
   git \
   virtualenv \
   python-setuptools \
-  psmisc &&
+  psmisc
 
 adduser octoprint && \
   usermod -a -G tty octoprint && \
@@ -55,6 +55,9 @@ sudo update-rc.d octoprint defaults
 If everything went well, you can start OctoPrint now: `service octoprint start`
 
 The server will be available at your machine's IP + ':5000', like so: `192.168.1.100:5000`
+
+You can change the server port (and other configs) in `/etc/default/octoprint`. 
+After saving your changes, run `service octoprint stop && service octoprint start`
 
 Easy peasy, 3d-print squeezy!
 
