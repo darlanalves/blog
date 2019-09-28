@@ -59,6 +59,9 @@ The server will be available at your machine's IP + ':5000', like so: `192.168.1
 You can change the server port (and other configs) in `/etc/default/octoprint`. 
 After saving your changes, run `update-rc.d octoprint defaults && service octoprint restart`
 
+NOTE: after changing the port sometimes Octoprint will get stuck. I just pulled the plug of OrangePI and put it back. 
+After reboot it was back online :)
+
 Easy peasy, 3d-print squeezy!
 
 Ciao.
