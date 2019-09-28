@@ -25,13 +25,15 @@ apt-get install -y \
   git \
   virtualenv \
   python-setuptools \
-  psmisc &&\
-  adduser octoprint && \
+  psmisc &&
+
+adduser octoprint && \
   usermod -a -G tty octoprint && \
   usermod -a -G dialout octoprint &&\
   adduser octoprint sudo
 
-echo "octoprint ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+echo "octoprint ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/octoprint && \
+  chmod 0440 /etc/sudoers.d/octoprint
 
 git clone https://github.com/foosel/OctoPrint.git /opt/octoprint && \
   cd /opt/octoprint && \
@@ -39,9 +41,9 @@ git clone https://github.com/foosel/OctoPrint.git /opt/octoprint && \
   virtualenv venv && \
   ./venv/bin/python setup.py install
 
-cp scripts/octoprint.init /etc/init.d/octoprint && \
+cp /opt/octoprint/scripts/octoprint.init /etc/init.d/octoprint && \
   chmod a+x /etc/init.d/octoprint && \
-  cp scripts/octoprint.default /etc/default/octoprint
+  cp /opt/octoprint/scripts/octoprint.default /etc/default/octoprint
 
 echo "DAEMON=/opt/octoprint/venv/bin/octoprint" >> /etc/default/octoprint
 
