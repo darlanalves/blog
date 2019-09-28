@@ -49,7 +49,7 @@ echo "DAEMON=/opt/octoprint/venv/bin/octoprint" >> /etc/default/octoprint
 
 echo "OCTOPRINT_USER=octoprint" >> /etc/default/octoprint
 
-sudo update-rc.d octoprint defaults
+update-rc.d octoprint defaults
 ```
 
 If everything went well, you can start OctoPrint now: `service octoprint start`
@@ -57,7 +57,7 @@ If everything went well, you can start OctoPrint now: `service octoprint start`
 The server will be available at your machine's IP + ':5000', like so: `192.168.1.100:5000`
 
 You can change the server port (and other configs) in `/etc/default/octoprint`. 
-After saving your changes, run `service octoprint stop && service octoprint start`
+After saving your changes, run `update-rc.d octoprint defaults && service octoprint restart`
 
 Easy peasy, 3d-print squeezy!
 
