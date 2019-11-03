@@ -17,7 +17,7 @@ of the printer and make it print over WIFI?
 Luckily for me, I already have **Armbian** running on OPi and I found [a quick tutorial on the webz](http://deloarts.com/en/3d-printing/octoprint-on-orange-pi-zero/) to do it.
 We're gonna setup some packages, install PySerial and build [OctoPrint](https://octoprint.org/download/) to start our prints.
 
-At the moment the stable version of OctoPrint is 1.3.11. Check the latest stable version [here](https://github.com/foosel/OctoPrint/releases)
+At the moment the stable version of OctoPrint is 1.3.12. Check the latest stable version [here](https://github.com/foosel/OctoPrint/releases)
 
 
 **If you are like me and cannot read through a whole article here's a quick sequence of commands to do everything:**
@@ -44,7 +44,7 @@ echo "octoprint ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/octoprint && \
 
 git clone https://github.com/foosel/OctoPrint.git /opt/octoprint && \
   cd /opt/octoprint && \
-  git checkout 1.3.11 && \
+  git checkout 1.3.12 && \
   virtualenv venv && \
   ./venv/bin/python setup.py install
 
