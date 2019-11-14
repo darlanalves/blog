@@ -94,4 +94,14 @@ Hotend & extruder
 
 Easy peasy, 3d-print squeezy!
 
-Ciao.
+## What now?
+
+Do you know OctoPrint also has a bunch of plugins?
+
+Yes! It does! And there's a bunch of them!
+
+Here's my favourite: [exclude a region during print](https://plugins.octoprint.org/plugins/excluderegion/).
+
+Take a look at this and other plugins [here](https://plugins.octoprint.org/by_date/).
+
+Ciao!
