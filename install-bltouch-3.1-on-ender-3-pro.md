@@ -24,6 +24,8 @@ This is a journal of what I had to do in order to get it working.
 
 ## The printed mods
 
+- BLTouch [holder](https://www.thingiverse.com/thing:2493610/files)
+
 ## The software
 
 - Marlin [2.0.x with bugfixes](https://github.com/MarlinFirmware/Marlin/tree/bugfix-2.0.x) (see [this reddit thread](https://www.reddit.com/r/ender3/comments/b59soj/psa_new_bltouch_v30_will_not_work_with_marlin_11x/))
