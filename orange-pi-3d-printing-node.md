@@ -7,6 +7,9 @@ The first thing that bothered me is either swap around a TF Card or hook an USB 
 And you know that connecting and disconnecting a USB is too much work for a nerd, so why not hook my OrangePI to the side
 of the printer and make it print over WIFI?
 
+> NOTE: if you don't have a memory card with linux yet, you will have to flash an ARM-based Debian image to a TF card and use it as a boot disk for our system. You can download Armbian [from their website](https://www.armbian.com/orange-pi-pc/#kernels-archive-all) and flash to a card [using a flasher like Balena Etcher](https://www.balena.io/etcher/)
+
+
 # What you're gonna need/use
 
 - [Orange Pi](http://www.orangepi.org/orangepizero/) with [Armbian](https://www.armbian.com/orange-pi-pc/) installed on an SD Card
