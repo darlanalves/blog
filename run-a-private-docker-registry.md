@@ -54,4 +54,6 @@ docker run --rm -d \
   registry:2
 ```
 
+## Troubleshooting
 
+Sometimes pushing a big image to your private registry will be halted mid-upload, so you need to change stuff in your Nginx config and add the following rule to it: `client_max_body_size 1000M;`
