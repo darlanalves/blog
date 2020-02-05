@@ -30,3 +30,17 @@ server {
 }
 
 ```
+
+# Bonus: Nginx + Docker
+
+If you just wanna serve an Angular app somewhere with Docker, here's an example of a `Dockerfile` to do it:
+
+```Dockerfile
+FROM nginx:alpine
+
+# config/server.conf has the content from the example above
+ADD config/server.conf /etc/nginx/conf.d/default.conf
+COPY dist /usr/share/nginx/html
+
+EXPOSE 80
+```
