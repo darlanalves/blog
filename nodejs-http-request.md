@@ -11,12 +11,12 @@ const http = request('http');
 
 function request(url) {
   return new Promise((resolve, reject) => {
-    const request = http.get(new URL('http://google.com/'));
-    let buffer = '';
+    const request = http.get(new URL(url));
+    let buffer = [];
     request.on('response', (res) => {
-      res.on('data', (data) => buffer += data);
+      res.on('data', (data) => buffer.push(data));
       res.on('error', reject);
-      res.on('end', () => resolve(buffer));
+      res.on('end', () => resolve(Buffer.concat(buffer).toString());
     });
 
     request.on('error', reject);
