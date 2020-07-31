@@ -7,7 +7,7 @@ For cases when you just need to make an HTTP request and you don't wanna install
 // import * as http from 'http';
 
 // CommonJS mode
-const http = request('http');
+const http = require('http');
 
 function request(url) {
   return new Promise((resolve, reject) => {
