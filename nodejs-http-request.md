@@ -24,3 +24,7 @@ function request(url) {
   });
 }
 ```
+
+This is a very, very simple snippet and won't work well in all scenarios.
+
+[Read more about HTTP requests in Node.JS](https://nodejs.org/en/docs/guides/anatomy-of-an-http-transaction/) if you want to understand/enhance the snippet above.
