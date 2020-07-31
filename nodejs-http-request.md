@@ -16,7 +16,7 @@ function request(url) {
     request.on('response', (res) => {
       res.on('data', (data) => buffer.push(data));
       res.on('error', reject);
-      res.on('end', () => resolve(Buffer.concat(buffer).toString());
+      res.on('end', () => resolve(Buffer.concat(buffer).toString()));
     });
 
     request.on('error', reject);
