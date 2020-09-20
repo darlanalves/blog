@@ -4,9 +4,10 @@
 ## Step 1: Make sure you have SSH configured
 
 Go to Digital Ocean's dashboard, navigate to `Settings` > `Security`
+
 Add your SSH keys there.
 
-## Step 2: Create a Droplet
+## Step 2: Create a droplet
 
 Go to Digital Ocean's dashboard, click the "Create" button on top of the page and select "Droplet"
 
@@ -24,20 +25,71 @@ Click [CREATE]
 
 ## Step 3: Login with SSH
 
-Let's make sure you have ssh access to your new machine.
+Let's make sure you have ssh access to your new machine. 
 
-Go to Digital Ocean's dashboard, then navigate to `Droplets` and copy the IP address of your new droplet.
+First let's get you a root password: go to Dashboard, click on your droplet's name, go to `Access` and ask for a new root password.
+Once that's done you'll receive your password via email.
 
-From a terminal:
+Now go to Digital Ocean's dashboard, then navigate to `Droplets` and copy the IP address of your new droplet.
 
-```bash
-# droplet's IP, e.g. 1.2.3.4
-
-ssh root@1.2.3.4
-```
+From a terminal, let's access your server.
 
 Whenever prompted about a new host, confirm (Y) and continue.
-You should be inside your droplet now.
 
-## Step 4: 
+You should be inside your droplet now. You will need to change your password the first time you access it.
 
+```bash
+ssh root@1.2.3.4
+
+...
+...
+
+Changing password for root.
+
+(current) UNIX password: [paste-root-password-here]
+Enter new UNIX password: [new-password]
+```
+
+Enter a new password and repeat it.
+
+Once done, let's confirm everything is fine, by closing our session and connecting again:
+
+```bash
+root@1.2.3.4:~# exit
+logout
+Connection to homebots.io closed.
+
+$ ssh root@1.2.3.4
+```
+
+Good, now let's remove password access from your machine.
+
+```bash
+nano /etc/ssh/sshd_config
+```
+Locale the line with `PermitRootLogin` and replace `yes` with `prohibit-password`
+
+```
+...
+PermitRootLogin prohibit-password
+...
+```
+
+Now only ssh access with your keys is allow. Make sure you don't lose them 😅
+
+> Read more about [security-related changes](https://www.cyberciti.biz/faq/how-to-disable-ssh-password-login-on-linux/)
+
+## Step 4: Update packages and install dependencies
+
+```bash
+
+# Update dependency list
+apt-get update && apt-get upgrade -y
+
+# Node.js
+snap install node --classic
+
+# Docker
+snap install docker
+
+```
