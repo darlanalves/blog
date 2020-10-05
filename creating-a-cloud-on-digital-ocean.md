@@ -1,5 +1,6 @@
 # Introduction
 
+We will set up a new Droplet in Digital Ocean, then install a few packages on it and prepare to host multiple services and domains in one machine
 
 ## Step 1: Make sure you have SSH configured
 
@@ -62,7 +63,7 @@ Connection to homebots.io closed.
 $ ssh root@1.2.3.4
 ```
 
-Good, now let's remove password access from your machine.
+Ok, now let's remove password access from your machine.
 
 ```bash
 nano /etc/ssh/sshd_config
@@ -75,7 +76,7 @@ PermitRootLogin prohibit-password
 ...
 ```
 
-Now only ssh access with your keys is allow. Make sure you don't lose them 😅
+Now only ssh access with your keys is allowed. Make sure you don't lose your keys 😅
 
 > Read more about [security-related changes](https://www.cyberciti.biz/faq/how-to-disable-ssh-password-login-on-linux/)
 
@@ -91,5 +92,12 @@ snap install node --classic
 
 # Docker
 snap install docker
+
+```
+
+# Step 5: prepare the cloudy service
+
+```bash
+npm i -g @cloud-cli/cloudy
 
 ```
