@@ -1,10 +1,10 @@
 # Automated HTTPS certificates with Digital Ocean and Let's Encrypt on Ubuntu 20+
 
-> NOTE: `sudo` is not used here, I'm assuming you are doing this as root.
+> Important: `sudo` is not used here, I'm assuming you are doing this as root.
 >
 > Otherwise, prefix all commands with `sudo`
 
-## Step 1: make sure Snapd is installed
+## Step 1: Make sure Snap is installed
 
 Follow [this page on Snap](https://snapcraft.io/docs/installing-snapd) to install it if needed.
 
@@ -21,7 +21,7 @@ ln -s /snap/bin/certbot /usr/bin/certbot
 
 Let's [install a DNS plugin](https://certbot-dns-digitalocean.readthedocs.io/en/stable/) for Certbot that will automatically configure the DNS entries for renewal.
 
-> Note: I don't know why we need to explicitly install
+> Side note: I don't know exaclty why we need to explicitly install the plugin as a python dependency, but it won't work otherwise
 
 ```bash
 apt install python3-pip
@@ -39,7 +39,7 @@ Ok, now let's create a file and paste your token there:
 echo 'dns_digitalocean_token = <paste-token-here>' > ~/digital-ocean.ini
 ```
 
-## Step 4: generate certificates
+## Step 4: Generate certificates
 
 Still with me? Good!
 
@@ -47,17 +47,21 @@ Now we can put all together and generate our certificates:
 
 ```bash
 certbot certonly \
+  --agree-tos \
   --register-unsafely-without-email \
   --dns-digitalocean \
   --dns-digitalocean-credentials ~/digital-ocean.ini \
+  --dns-digitalocean-propagation-seconds 30 \
   -d example.com \
   -d '*.example.com'
 ```
 
+> If you want to receive emails when a certificate is not renewed, remove `--register-unsafely-without-email` from this command. Certbot will ask for your email
+
 If everything went well you should see a message like this:
 
 ```
-IMPORTANT NOTES:
+IMPORTANT NOTES:s
  - Congratulations! Your certificate and chain have been saved at:
    /etc/letsencrypt/live/example.com/fullchain.pem
    Your key file has been saved at:
@@ -73,7 +77,18 @@ IMPORTANT NOTES:
  ```
  
  ## Testing the automatic renewal
- 
+
+Then you can do a dry-run of your settings with the following:
+
  ```bash
  certbot renew --dry-run
  ```
+If you see no errors, everything is ready and fully automated.
+
+> Note: I saw some issues due to my _acme* DNS entries not changing fast enough. I can't figure out why, but my renewals work just fine 🤷‍♂️
+
+Also check if there's a cronjob schedule to auto renew your certificates:
+
+```bash
+systemctl status certbot.timer
+```
