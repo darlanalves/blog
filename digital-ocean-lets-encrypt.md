@@ -61,7 +61,7 @@ certbot certonly \
 If everything went well you should see a message like this:
 
 ```
-IMPORTANT NOTES:s
+IMPORTANT NOTES:
  - Congratulations! Your certificate and chain have been saved at:
    /etc/letsencrypt/live/example.com/fullchain.pem
    Your key file has been saved at:
@@ -92,3 +92,12 @@ Also check if there's a cronjob schedule to auto renew your certificates:
 ```bash
 systemctl status certbot.timer
 ```
+
+
+References for this post:
+
+- [How To Secure Nginx with Let's Encrypt on Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04)
+- [Certbot with Snap and Nginx](https://certbot.eff.org/lets-encrypt/snap-nginx)
+- [Letsencrypt Wildcard SSL with DigitalOcean DNS](https://blog.khophi.co/letsencrypt-wildcard-ssl-with-digitalocean-dns/)
+- [Documentation for certbot-dns-digitalocean](https://certbot-dns-digitalocean.readthedocs.io/en/stable/)
+- [Certbot: unexpected error](https://blog.bramp.net/post/2018/05/26/certbot-unexpected-error/)
