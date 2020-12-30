@@ -90,7 +90,7 @@ If you see no errors, everything is ready and fully automated.
 Also check if there's a cronjob schedule to auto renew your certificates:
 
 ```bash
-systemctl status certbot.timer
+systemctl status snap.certbot.renew.timer
 ```
 
 
