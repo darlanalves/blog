@@ -80,5 +80,7 @@ Now only ssh access with your keys is allowed.
 
 Make sure you don't lose your keys! 😅
 
-> Read more about [security-related changes](https://www.cyberciti.biz/faq/how-to-disable-ssh-password-login-on-linux/)
+## Next
+
+Read more about [security-related changes](https://www.cyberciti.biz/faq/how-to-disable-ssh-password-login-on-linux/) or check this [article from DigitalOcean about SSH](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-2)
 
