@@ -36,27 +36,42 @@ This token is used to configure the DNS entries. Go to settings and copy your to
 Ok, now let's create a file and paste your token there:
 
 ```bash
-echo 'dns_digitalocean_token = <paste-token-here>' > ~/digital-ocean.ini
+echo 'dns_digitalocean_token = <paste-token-here>' > /home/digital-ocean.ini
 ```
 
-## Step 4: Generate certificates
+## Step 4: Configure the CLI
 
 Still with me? Good!
+
+Let's create a configuration file to set some default options for certbot.
+
+Create a file at `/etc/letsencrypt/cli.ini`. I use `nano` for that:
+
+```bash
+nano /etc/letsencrypt/cli.ini
+```
+
+Paste this in your editor and save it:
+
+```
+agree-tos = true
+force-renewal = true
+authenticator = dns-digitalocean
+dns-digitalocean-credentials = /home/digital-ocean.ini
+dns-digitalocean-propagation-seconds = 30
+register-unsafely-without-email = true
+non-interactive = true
+```
+
+> If you want to receive emails when a certificate is not renewed, remove `--register-unsafely-without-email` from this configuration. Certbot will ask for your email
+
+## Step 5: Generate certificates
 
 Now we can put all together and generate our certificates:
 
 ```bash
-certbot certonly \
-  --agree-tos \
-  --register-unsafely-without-email \
-  --dns-digitalocean \
-  --dns-digitalocean-credentials ~/digital-ocean.ini \
-  --dns-digitalocean-propagation-seconds 30 \
-  -d example.com \
-  -d '*.example.com'
+certbot certonly -d example.com -d '*.example.com'
 ```
-
-> If you want to receive emails when a certificate is not renewed, remove `--register-unsafely-without-email` from this command. Certbot will ask for your email
 
 If everything went well you should see a message like this:
 
@@ -75,7 +90,7 @@ IMPORTANT NOTES:
    Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
    Donating to EFF:                    https://eff.org/donate-le
  ```
- 
+
  ## Testing the automatic renewal
 
 Then you can do a dry-run of your settings with the following:
@@ -92,7 +107,6 @@ Also check if there's a cronjob schedule to auto renew your certificates:
 ```bash
 systemctl status snap.certbot.renew.timer
 ```
-
 
 References for this post:
 
